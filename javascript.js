@@ -1,10 +1,10 @@
-let input = document.getElementById('inpt');
-let search_queries='';
+let input = document.getElementById('inpt');//Считывается введенное в инпут значение
+let search_queries='';//Инициализация переменной для значения из инпута
 
 let vacanciesUrlBase=`https://api.hh.ru/vacancies`//Базовый урл для поиска вакансий
 
-const api2ipUrl='https://api.2ip.io/?token=vs9053tz3i5ssebn&lang=ru'//получение названия города по ip для ru региона
-const hhareasUrl='https://api.hh.ru/suggests/areas?text='//получение id города
+const api2ipUrl='https://api.2ip.io/?token=vs9053tz3i5ssebn&lang=ru'//Получение названия города по ip для ru региона
+const hhareasUrl='https://api.hh.ru/suggests/areas?text='//Получение id города
 let finalUrl;
 async function getResponse()
 {
@@ -14,11 +14,11 @@ let api2ipJson=await api2ipResponse.json()
 const cityName= api2ipJson.city//Название на русском
 document.getElementById('p1').textContent=cityName;
 console.log(cityName);
-//достаем id города из массива объектов городов
+//Достаем id города из массива объектов городов
 let hhareasResponse= await fetch(hhareasUrl+cityName)
 let hhareasJson=await hhareasResponse.json()
 
-//автопоиск id города в цикле по его названию     
+//Автопоиск id города в цикле по его названию     
 let cityId
 for(let i=0;i<hhareasJson.items.length;i++)
         {
@@ -32,11 +32,11 @@ console.log(cityId);
 //Определяется базовый url, значение из input и id города записываются в параметры url 
 let baseUrl = vacanciesUrlBase;
 let params = new URLSearchParams({
-    text: search_queries, area: cityId
+    text: search_queries, 
+    area: cityId
 });
 
 // Формирует запрос вакансий с полем text и полем area(id города)
-//let finalUrl = `${baseUrl}?${params.toString()}`;
 finalUrl = `${baseUrl}?${params.toString()}`;
 console.log(finalUrl);
 
@@ -81,10 +81,8 @@ async function main() {
             //Обработка нажатия на карточку с вакансией
             item.addEventListener('click',function()
             {
-             window.open(`https://hh.ru/vacancy/${result[i].id}`);//Открытие новой вкладки с выбранной вакансией
-            })
-            item.addEventListener('click',() => {
-            item.style.backgroundColor =  `rgb(${195}, ${123}, ${189})`;//`rgb(${r}${g}${b})`
+              window.open(`https://hh.ru/vacancy/${result[i].id}`);//Открытие новой вкладки с выбранной вакансией
+              item.style.backgroundColor =  `rgb(${195}, ${123}, ${189})`;//Изменение фона таблички с вакансией после нажатия
             })
             document.querySelector('.items').append(item)
           }
