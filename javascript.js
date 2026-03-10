@@ -94,7 +94,6 @@ var button=document.getElementById('bs');
 button.addEventListener('click',function()
 {
   search_queries=input.value.toString();
-  alert(search_queries);
   //Очищает div items в котором выводятся вакансии
   document.getElementById('itemsId').replaceChildren();
    main();
