@@ -5,7 +5,7 @@
   "main": "javascript.js",
   "scripts": {
     "test": "echo \"Error: no test specified\"",
-  "lint": "echo 'No linting needed'" 
+    "lint": "echo 'No linting needed'" 
   },
   "repository": {
     "type": "git",
